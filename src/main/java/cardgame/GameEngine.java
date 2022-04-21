@@ -102,36 +102,7 @@ public class GameEngine {
         topPileCard = getStartingTopPileCard();
         while (!matchEnded) {
             if (deckOfCards.size() > 0) {
-                for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
-                		if (playerList.get(i).getMyCards().size() == 0) {
-                        	addMatchScore(playerList.get(i));
-                        	matchEnded = true;
-                        	deckOfCards.clear();
-                        	break;
-                    	}
-                    	if (!(playerList.get(i).shouldDrawCard(topPileCard, topPileCard.getSuit()))) {
-                        	playerList.get(i).getCardToPlay(topPileCard);
-                        	topPileCard = playerList.get(i).playCard();
-                        	playerList.get(i).getMyCards().remove(0);
-                        	if (playerList.get(i).getMyCards().size() == 0) {
-                            	addMatchScore(playerList.get(i));
-                            	matchEnded = true;
-                            	deckOfCards.clear();
-                            	break;
-                        	}
-                    	} else {
-                        	if (!deckOfCards.isEmpty()) {
-                        		playerList.get(i).receiveCard(deckOfCards.get(INDEX_OF_TOP_CARD_OF_DECK));
-                            	deckOfCards.remove(INDEX_OF_TOP_CARD_OF_DECK);
-                            	if (deckOfCards.isEmpty()) {
-                                	addTiedMatchScore();
-                                	matchEnded = true;
-                                	deckOfCards.clear();
-                                	break;
-                            	}
-                        	}
-                    	}
-                }  
+            	initiatePlayGame(matchEnded);
             } else {
                 addTiedMatchScore();
             }
@@ -139,6 +110,46 @@ public class GameEngine {
         for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
             playerList.get(i).reset();
         }
+    }
+    public static boolean initiatePlayGame(Boolean matchEnded) {
+    	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
+    		if (playerList.get(i).getMyCards().size() == 0) {
+            	addMatchScore(playerList.get(i));
+            	matchEnded = true;
+            	deckOfCards.clear();
+            	break;
+        	}
+        	if (!(playerList.get(i).shouldDrawCard(topPileCard, topPileCard.getSuit()))) {
+            	playerList.get(i).getCardToPlay(topPileCard);
+            	topPileCard = playerList.get(i).playCard();
+            	playerList.get(i).getMyCards().remove(0);
+            	matchEnded = checkRoundScore(matchEnded, i);
+        	} else {
+            	if (!deckOfCards.isEmpty()) {
+            		playerList.get(i).receiveCard(deckOfCards.get(INDEX_OF_TOP_CARD_OF_DECK));
+                	deckOfCards.remove(INDEX_OF_TOP_CARD_OF_DECK);
+                	matchEnded = checkTiedRoundScore(matchEnded);
+            	}
+        	}
+    }
+		return matchEnded;  
+    }
+    public static boolean checkRoundScore(Boolean matchEnded,int playerNumber) {
+    	if (playerList.get(playerNumber).getMyCards().size() == 0) {
+        	addMatchScore(playerList.get(playerNumber));
+        	matchEnded = true;
+        	deckOfCards.clear();
+    	}
+    	return matchEnded;
+    }
+    public static boolean checkTiedRoundScore(Boolean matchEnded) {
+    	if (deckOfCards.isEmpty()) {
+        	addTiedMatchScore();
+        	matchEnded = true;
+        	deckOfCards.clear();
+    	}
+		return matchEnded;
+    	
     }
 	/**
 	 * creates a player list
