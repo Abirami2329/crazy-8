@@ -18,15 +18,14 @@ public class GameEngine {
 	private static List<Card> deckOfCards;
 	public static void main(String[] arguments) {
 		//welcome message
-        System.out.println("\n========================================================\n");
 		System.out.println("\n..........WELCOME TO CRAZY8 CARD GAME..........\n");
+		System.out.println("\n========================================================\n");
 		showOptions();
 	}
 	/**
 	 * function to get the options from the user
 	 */
 	public static void showOptions() {
-        System.out.println("\n========================================================\n");
 		System.out.println("1.START GAME");
 		System.out.println("2.GUIDE");
 		System.out.println("3.EXIT");
@@ -43,6 +42,8 @@ public class GameEngine {
 				break;
 			case 3:
 				return;
+			default:
+				break;
 		}
 	}
 	/**
@@ -65,7 +66,6 @@ public class GameEngine {
 	 * if user chooses guide, the the instruction is deleted
 	 */
 	public static void guideForPlayGame() {
-        System.out.println("\n========================================================\n");
 		System.out.println("Start Game");
 		System.out.println("Enter the players name");
 		System.out.println("Which player first reach 200 points,he is the winner");
@@ -120,10 +120,10 @@ public class GameEngine {
                             	break;
                         	}
                     	} else {
-                        	if (deckOfCards.size() != 0) {
+                        	if (!deckOfCards.isEmpty()) {
                         		playerList.get(i).receiveCard(deckOfCards.get(INDEX_OF_TOP_CARD_OF_DECK));
                             	deckOfCards.remove(INDEX_OF_TOP_CARD_OF_DECK);
-                            	if (deckOfCards.size() == 0) {
+                            	if (deckOfCards.isEmpty()) {
                                 	addTiedMatchScore();
                                 	matchEnded = true;
                                 	deckOfCards.clear();
@@ -209,9 +209,8 @@ public class GameEngine {
 
 		for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
 			if (playerList.get(i).getTotalScore() >=WIN_SCORE) {
-		        System.out.println("\n========================================================\n");
 				System.out.print("\n"+playersName[i] + ".....IS WINNER....\n");
-		        System.out.println("\n========================================================\n");
+
 				
 			}
 		
