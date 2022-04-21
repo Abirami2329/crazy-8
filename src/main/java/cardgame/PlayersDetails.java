@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayersDetails implements PlayerStrategy {
-	private final static int NUMBER_OF_PLAYERS = 4;
+	private static final int NUMBER_OF_PLAYERS = 4;
     private int setPlayerId;
     private List<Integer> setOpponentIds;
     private List<Card> myCards = new ArrayList<>();
@@ -111,13 +111,9 @@ public class PlayersDetails implements PlayerStrategy {
      */
     public void getCardToPlay(Card topPileCard) {
         for (int i = 0; i < myCards.size(); i++) {
-            if (myCards.get(i).getSuit().equals(topPileCard.getSuit())) {
+	    int myCardAssumtion = myCards.get(i).getSuit();
+            if (myCardAssumtion.equals(topPileCard.getSuit()) || myCardAssumtion.equals(topPileCard.getRank()) || myCardAssumtion.equals(Card.Rank.EIGHT)) {
                 cardToPlay = myCards.get(i);
-            } else if (myCards.get(i).getRank().equals(topPileCard.getRank())) {
-                cardToPlay = myCards.get(i);
-            } else if (myCards.get(i).getRank().equals(Card.Rank.EIGHT)) {
-                cardToPlay = myCards.get(i);
-            }
         }
         myCards.remove(cardToPlay);
         myCards.add(0, cardToPlay);
