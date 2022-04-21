@@ -170,6 +170,7 @@ public class GameEngine {
 			for (int j = 0; j < INITIAL_DISPATCHED_CARD; j++) {
 				temp.add(deckOfCards.get(INDEX_OF_TOP_CARD_OF_DECK));
 				deckOfCards.remove(INDEX_OF_TOP_CARD_OF_DECK);
+				deckOfCards--;
 			}
 			playerList.get(i).receiveInitialCards(temp);
 			temp.clear();
