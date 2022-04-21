@@ -101,7 +101,7 @@ public class GameEngine {
         giveInitialCardsToPlayers();
         topPileCard = getStartingTopPileCard();
         while (!matchEnded) {
-            if (deckOfCards.size() > 0) {
+            if (!deckOfCards.isEmpty()) {
             	initiatePlayGame(matchEnded);
             } else {
                 addTiedMatchScore();
@@ -113,7 +113,7 @@ public class GameEngine {
     }
     public static boolean initiatePlayGame(Boolean matchEnded) {
     	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
-    		if (playerList.get(i).getMyCards().size() == 0) {
+    		if (playerList.get(i).getMyCards().isEmpty()) {
             	addMatchScore(playerList.get(i));
             	matchEnded = true;
             	deckOfCards.clear();
@@ -135,7 +135,7 @@ public class GameEngine {
 		return matchEnded;  
     }
     public static boolean checkRoundScore(Boolean matchEnded,int playerNumber) {
-    	if (playerList.get(playerNumber).getMyCards().size() == 0) {
+    	if (playerList.get(playerNumber).getMyCards().isEmpty()) {
         	addMatchScore(playerList.get(playerNumber));
         	matchEnded = true;
         	deckOfCards.clear();
