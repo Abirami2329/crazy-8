@@ -18,7 +18,7 @@ public class PlayerTurn {
      */
     int playerId;
 
-    /**
+    /** 
      * If the player drew a card on their turn
      */
     boolean drewACard;
