@@ -16,24 +16,24 @@ public class PlayerTurn {
     /**
      * The ID of the player that this action corresponds to
      */
-    public int playerId;
+    public int PlayerId;
 
     /**
      * If the player drew a card on their turn
      */
-    public boolean drewACard;
+    public boolean DrewACard;
 
     /**
      * The card the player played on their turn, or null if the player didn't play a card.
      */
-    public Card playedCard;
+    public Card PlayedCard;
 
     /**
      * When a player plays an "8", they can declare what suit the next player must play to.
      * <p>
      * If the player played an "8", this is the suit that they declared. Otherwise, this is null.
      */
-    public Card.Suit declaredSuit;
+    public Card.Suit DeclaredSuit;
 
     // Convenience methods; you might or might not need these.
 
