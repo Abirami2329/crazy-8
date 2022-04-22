@@ -18,20 +18,20 @@ public class GameEngine {
 	private static List<Card> deckOfCards;
 	public static void main(String[] arguments) {
 		//welcome message
-		System.out.println("\n..........WELCOME TO CRAZY8 CARD GAME..........\n");
-		System.out.println("\n========================================================\n");
+		System.Out.println("\n..........WELCOME TO CRAZY8 CARD GAME..........\n");
+		System.Out.println("\n========================================================\n");
 		showOptions();
 	}
 	/**
 	 * function to get the options from the user
 	 */
 	public static void showOptions() {
-		System.out.println("1.START GAME");
-		System.out.println("2.GUIDE");
-		System.out.println("3.EXIT");
+		System.Out.println("1.START GAME");
+		System.Out.println("2.GUIDE");
+		System.Out.println("3.EXIT");
 		int choice;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter Your Choice"); 
+		System.Out.println("Enter Your Choice"); 
 		choice = sc.nextInt();
 		switch(choice) {
 			case 1:
@@ -52,10 +52,10 @@ public class GameEngine {
 	 */
 	public static void startGame() {
 		String[] playersName = new String[NUMBER_OF_PLAYERS];
-		System.out.println("PLEASE ENTER THE PLAYER NAMES TO BEGIN THE GAME...");
+		System.Out.println("PLEASE ENTER THE PLAYER NAMES TO BEGIN THE GAME...");
 		for (int i = 1; i <= NUMBER_OF_PLAYERS; i++) {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("Enter Player " + i + " Name :");  
+			System.Out.println("Enter Player " + i + " Name :");  
 			playersName[i-1]= sc.nextLine();
 		}  
 		playerList = createPlayerList();
@@ -66,12 +66,12 @@ public class GameEngine {
 	 * if user chooses guide, the the instruction is deleted
 	 */
 	public static void guideForPlayGame() {
-		System.out.println("Start Game");
-		System.out.println("Enter the players name");
-		System.out.println("Which player first reach 200 points,he is the winner");
-		System.out.println("points detail");
-		System.out.println("1. heart (♥), spade (♠) diamond (♦), club(♣)  containes 10 points");
-		System.out.println("Other cards contains the points based on the number");
+		System.Out.println("Start Game");
+		System.Out.println("Enter the players name");
+		System.Out.println("Which player first reach 200 points,he is the winner");
+		System.Out.println("points detail");
+		System.Out.println("1. heart (♥), spade (♠) diamond (♦), club(♣)  containes 10 points");
+		System.Out.println("Other cards contains the points based on the number");
 		showOptions();
 	}
 	/**
@@ -84,9 +84,9 @@ public class GameEngine {
 		while (!gameOver) {
 			playGame();
 			matchNumber++;
-			System.out.println("\n" + "Player scores for Match " + matchNumber + ":");
+			System.Out.println("\n" + "Player scores for Match " + matchNumber + ":");
 			for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
-				System.out.println(playersName[i] +" 's score is " + playerList.get(i).getTotalScore());
+				System.Out.println(playersName[i] +" 's score is " + playerList.get(i).getTotalScore());
 				if (playerList.get(i).getTotalScore() >= 200) {
 					gameOver = true;
 				}
@@ -221,7 +221,7 @@ public class GameEngine {
 
 		for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
 			if (playerList.get(i).getTotalScore() >=WIN_SCORE) {
-				System.out.print("\n"+playersName[i] + ".....IS WINNER....\n");
+				System.Out.print("\n"+playersName[i] + ".....IS WINNER....\n");
 
 				
 			}
